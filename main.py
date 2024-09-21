@@ -2,15 +2,19 @@ class House:
     houses_history = []
 
     def __new__(cls, *args, **kwargs):
+        """Метод вызывается перед созданием класса и
+        возвращает ссылку на адрес в памяти, по которой будет создан
+        новый экземпляр данного класса"""
         cls.houses_history.append(args[0])
         return super().__new__(cls)
 
     def __init__(self, name: str, number_of_floors: int):
-        """Инициализатор класса"""
+        """Инициализатор экземпляра класса"""
         self.name = name
         self.number_of_floors = number_of_floors
 
     def __del__(self):
+        """Метод финализатор вызывается непосредственно перед удалением экземпляра класса"""
         print(f'{self.name} снесён, но он останется в истории')
 
     def go_to(self, new_floor: int):
